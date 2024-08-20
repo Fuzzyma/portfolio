@@ -53,26 +53,45 @@ import Project from "./Project.astro";
 <Card colSpan="md:col-span-2" rowSpan="lg:row-span-4 md:row-span-6 !h-[400px] !md:h-auto">
     <div class="w-full h-full absolute inset-0">
         <div class="grid w-full h-full projects [&>div]:col-start-1 [&>div]:row-start-1 [&>div]:col-end-2 [&>div]:row-end-2 [&>div]:transition-opacity [&>div]:transition-duration-500">
-            <Project class="opacity-100" title="Saalplan Designer und Viewer" skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:tailwindcss-light','logos:pixijs', 'skill-icons:php-light']} src="/public/projects/map-designer.jpg">
-                Entwicklung einer Anwendung zum Erstellen von Sitzplänen für Theater u.Ä. und upgrade des Codes von Vue 2 zu Vue 3.
+            <Project class="opacity-100" title="Saalplan Designer und Viewer" 
+            skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:tailwindcss-light','logos:pixijs', 'skill-icons:php-light']} 
+            src="/public/projects/map-designer.jpg">
+                Entwicklung einer Anwendung zum Erstellen von Sitzplänen für Theater und ähnliche Einrichtungen sowie ein Upgrade des Codes von Vue 2 zu Vue 3.
                 <br><br>
                 Performante Darstellung beim Ticketkauf durch WebGL.
             </Project>
-            <Project class="opacity-0" title="Webkonferenz-Plattform für Matheunterricht" skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:tailwindcss-light', 'skill-icons:nodejs-light']} src="https://picsum.photos/300/200">
-                Ich habe eine Webkonferenz-Plattform mit geteiltem Whiteboard und maßgeschneiderter Jitsi-Funktionalität entwickelt. Ziel war es, eine nahtlose und benutzerfreundliche Online-Lernumgebung zu schaffen, die auf die Bedürfnisse des Matheunterrichts zugeschnitten ist.
+
+            <Project class="opacity-0 pointer-events-none" title="Maintainer vom Open Source Projekt SVG.JS"
+                        skills={['skill-icons:javascript', 'skill-icons:vitest-light', 'skill-icons:github-light']}
+                        src="/public/projects/svgjs.jpg"} href="https://github.com/svgdotjs/svg.js">
+                        SVG.JS ist eine leichte JavaScript-Bibliothek zur einfachen Erstellung und Manipulation von SVG-Grafiken im Web. Sie unterstützt Animationen und ermöglicht die Verknüpfung von Funktionen mit Benutzerinteraktionen.
             </Project>
-            <Project class="opacity-0" title="Baukostenabschätzung und Messung" skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:cs']} src="https://picsum.photos/300/200">
-                Ein Tool zum Schätzen von Baukosten u.Ä. anhand von Flurplänen und CAD Modellen. Für dieses Project habe ich die ersten Konzepte entwickelt und MVPs gebaut. Zusätzlich habe ich die Toolchain und Styleguides für das Team etabliert.
+            
+            <Project class="opacity-0 pointer-events-none" title="Webkonferenz-Plattform für Matheunterricht" 
+                        skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:tailwindcss-light', 'skill-icons:nodejs-light']} 
+                        src="https://picsum.photos/300/200">
+                Entwicklung einer Webkonferenz-Plattform mit geteiltem Whiteboard und maßgeschneiderteren Jitsi-Funktionalitäten. Ziel war es, eine nahtlose und benutzerfreundliche Online-Lernumgebung zu schaffen, die auf die Bedürfnisse des Matheunterrichts zugeschnitten ist.
             </Project>
-            <Project class="opacity-0" title={'Vortragsreihe "Webapplikationen Basis"'} skills={['skill-icons:html', 'skill-icons:css', 'skill-icons:javascript', 'skill-icons:php-light']} src="https://picsum.photos/300/200">
-                Lehre der Grundkonzepte von HTML, CSS, Javascript und PHP im Zuge einer 2 wöchigen Schulung.
-                Zielpublikum waren u.A. Auszubildene und Umschuldende für Systemadministration.
+            
+            <Project class="opacity-0 pointer-events-none" title="Baukostenabschätzung und Messung" 
+                        skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:cs']} 
+                        src="https://picsum.photos/300/200">
+                Ein Tool zur Schätzung von Baukosten und ähnlichen Projekten anhand von Flurplänen und CAD-Modellen. Für dieses Projekt habe ich die ersten Konzepte entwickelt und MVPs gebaut. Zusätzlich habe ich die Toolchain und Styleguides für das Team etabliert.
             </Project>
+            
+            <Project class="opacity-0 pointer-events-none" title={'Vortragsreihe "Webapplikationen Basis"'} 
+                        skills={['skill-icons:html', 'skill-icons:css', 'skill-icons:javascript', 'skill-icons:php-light']} 
+                        src="https://picsum.photos/300/200">
+                Lehre der Grundkonzepte von HTML, CSS, JavaScript und PHP im Rahmen einer zweiwöchigen Schulung.
+                Zielpublikum waren unter anderem Auszubildende und Umschulende für Systemadministration.
+            </Project>
+   
         </div>
         <div class="absolute bottom-5 left-0 right-0 flex items-center justify-center">
             <!-- dots for navigation -->
             <div class="flex gap-2" id="dots">
                 <div class="cursor-pointer transition-opacity transition-duration-300 w-5 h-5 bg-white rounded-full opacity-100 hover:opacity-70 drop-shadow-glow"></div>
+                <div class="cursor-pointer transition-opacity transition-duration-300 w-5 h-5 bg-white rounded-full opacity-50 hover:opacity-70 drop-shadow-glow"></div>
                 <div class="cursor-pointer transition-opacity transition-duration-300 w-5 h-5 bg-white rounded-full opacity-50 hover:opacity-70 drop-shadow-glow"></div>
                 <div class="cursor-pointer transition-opacity transition-duration-300 w-5 h-5 bg-white rounded-full opacity-50 hover:opacity-70 drop-shadow-glow"></div>
                 <div class="cursor-pointer transition-opacity transition-duration-300 w-5 h-5 bg-white rounded-full opacity-50 hover:opacity-70 drop-shadow-glow"></div>
