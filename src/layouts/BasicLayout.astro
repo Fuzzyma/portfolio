@@ -1,4 +1,6 @@
 ---
+import { LINKS } from '../lib/constants';
+
 interface Props {
   title: string;
   description: string;
@@ -16,36 +18,37 @@ interface Props {
 }
 
 const { title, description, page, slug, frontmatter } = Astro.props;
-const image =
-  page === "travel"
-    ? `${Astro.url.origin}/globe_preview.webp"`
-    : `${Astro.url.origin}/og-image.png`;
+const image = `${Astro.url.origin}/me.png"`
+  // page === "travel"
+  //   ? `${Astro.url.origin}/globe_preview.webp"`
+  //   : `${Astro.url.origin}/og-image.png`;
 
 const schema =
   page !== "blog"
     ? {
         "@context": "http://schema.org",
         "@type": "Person",
-        name: "Gianmarco",
-        url: "https://gianmarco.xyz",
+        name: "Ulrich-Matthias Schäfer",
+        url: "https://fuzzyma.de",
         sameAs: [
-          "https://www.linkedin.com/in/gianmarco-cavallo",
-          "https://github.com/Ladvace",
+            LINKS.linkedin,
+            LINKS.github,
+            LINKS.twitter
         ],
-        image: "https://gianmarco.xyz/og-image.png",
+        image: "https://fuzzyma.de/me.png",
         jobTitle: "Freelance Frontend Developer",
         worksFor: {
           "@type": "Organization",
           name: "Self-Employed",
           address: {
             "@type": "PostalAddress",
-            addressLocality: "Italy",
-            addressCountry: "IT",
+            addressLocality: "Germany",
+            addressCountry: "DE",
           },
         },
         nationality: {
           "@type": "Country",
-          name: "Italy",
+          name: "Germany",
         },
       }
     : {
@@ -53,26 +56,27 @@ const schema =
         "@type": "BlogPosting",
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `https://gianmarco.xyz/blog/${slug}`,
+          "@id": `https://fuzzyma.de/blog/${slug}`,
         },
         headline: frontmatter?.title || title,
         description: frontmatter?.description || title,
-        image: "https://gianmarco.xyz/og-image.png", //TODO: dynamic
+        image: "https://fuzzyma.de/me.png", //TODO: dynamic
         author: {
           "@type": "Person",
-          name: "Gianmarco",
-          url: "https://gianmarco.xyz",
+          name: "Ulrich-Matthias Schäfer",
+          url: "https://fuzzyma.de",
           sameAs: [
-            "https://www.linkedin.com/in/gianmarco-cavallo",
-            "https://github.com/Ladvace",
+            LINKS.linkedin,
+            LINKS.github,
+            LINKS.twitter
           ],
         },
         publisher: {
           "@type": "Organization",
-          name: "Gianmarco",
+          name: "Ulrich-Matthias Schäfer",
           logo: {
             "@type": "ImageObject",
-            url: "https://gianmarco.xyz/og-image.png",
+            url: "https://fuzzyma.de/me.png",
           },
         },
         datePublished: frontmatter?.pubDate || new Date().toISOString(),
@@ -97,7 +101,7 @@ const schema =
     <meta property="og:url" content={Astro.url.origin} />
     <meta
       property="og:image"
-      content={image || "https://gianmarco.xyz/og-image.png"}
+      content={image || "https://fuzzyma.de/me.png"}
     />
     <!-- Basic Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -105,7 +109,7 @@ const schema =
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content={image || "https://gianmarco.xyz/og-image.png"}
+      content={image || "https://fuzzyma.de/me.png"}
     />
 
     <link rel="preconnect" href="https://cdn.fontshare.com" />

@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+
+// Props for the component
+export interface Props {
+  src: string;
+  href?: string;
+  skills: Array<string>;
+  title: string;
+  class?: string;
+}
+
+const { src, href, skills, title } = Astro.props;
+---
+
+<div class={"relative group mx-auto min-w-0 w-full p-4 " + (Astro.props.class ? ` ${Astro.props.class}` : '')}>
+  <!-- Background Image with Blur Effect -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center blur-sm group-hover:blur-xs transition-all duration-300"
+    style={`background-image: url(${src});`}>
+  </div>
+
+  <!-- Overlay to Darken the Background -->
+  <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-30 transition-all duration-300"></div>
+
+  <!-- Content -->
+  <div class="relative text-white text-center transition-all duration-300 flex flex-col items-center justify-center gap-4">
+    <!-- Project Title -->
+    <h3 class="mt-8 text-3xl font-bold mb-2 group-hover:text-xl group-hover:mt-2 transition-all duration-300">{title}</h3>
+
+    <!-- Skills Icons -->
+    <div class="flex space-x-3 justify-center mb-4 mt-10 group-hover:mt-0 group-hover:justify-start transition-all duration-300">
+      {skills.map(skill => (
+        <Icon name={skill} class="w-20 h-20 group-hover:w-12 group-hover:h-12 transition-all duration-300" />
+      ))}
+    </div>
+
+    <!-- Hidden Description Revealed on Hover -->
+    <div class="opacity-0 group-hover:opacity-100 mt-0 group-hover:mt-4 transition-opacity duration-300">
+      <p><slot /></p>
+    </div>
+
+    <!-- Optional Link -->
+    {href && (
+      <a href={href} class="text-blue-300 underline mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Project</a>
+    )}
+  </div>
+
+
+
+</div>

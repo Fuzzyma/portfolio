@@ -34,4 +34,5 @@ export default defineConfig({
   vite: {
     assetsInclude: "**/*.riv",
   },
+  devToolbar: { enabled: false },
 });

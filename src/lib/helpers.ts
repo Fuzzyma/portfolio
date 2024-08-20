@@ -13,13 +13,13 @@ export function getCurrentTimeInItaly(): Date {
   return now;
 }
 
-export function formatTimeForItaly(date: Date): string {
+export function formatTimeForGermany(date: Date = new Date()): string {
   const options: Intl.DateTimeFormatOptions = {
     hour: "numeric",
     minute: "2-digit",
     second: "2-digit",
     hour12: true, // This will format the time in 12-hour format with AM/PM
-    timeZone: "Europe/Rome",
+    timeZone: "Europe/Berlin",
   };
 
   let formattedTime = new Intl.DateTimeFormat("en-US", options).format(date);

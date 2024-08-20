@@ -1,15 +1,22 @@
 ---
+import { Icon } from "astro-icon/components";
 import Card from "./Card/index.astro";
 ---
 
-<Card colSpan="md:col-span-2" rowSpan="md:row-span-1" title="My Stack">
-  <p class="text-sm font-light">
-    Here's a snapshot of the primary tools and technologies I work with:
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-3" title="Was kann ich?">
+  <p class="text-sm font-light my-2">
+    Hier eine Liste an Buzzwords mit Dingen die ich nutze:
   </p>
-  <ul class="text-sm font-light pl-5 list-disc">
-    <li ><strong>Solidjs</strong></li>
-    <li><strong>JavaScript</strong></li>
-    <li><strong>Node.js</strong></li>
-    <li><strong>React.js</strong></li>
+  <ul class="text-sm font-light block [&>li]:flex [&>li]:gap-2 [&>li]:items-center  columns-2">
+    <li><Icon name="skill-icons:typescript" /> Typescript</li>
+    <li><Icon name="skill-icons:vuejs-light" />Vue</li>
+    <li><Icon name="skill-icons:astro" />Astro</li>
+    <li><Icon name="skill-icons:vite-light" />Vite</li>
+    <li><Icon name="skill-icons:php-light" />PHP</li>
+    <li><Icon name="skill-icons:nodejs-light" />Nodejs</li>
+    <li><Icon name="skill-icons:nuxtjs-light" />Nuxt</li>
+    <li><Icon name="skill-icons:laravel-light" />Laravel</li>
+    <li><Icon name="skill-icons:postgresql-light" />PostgreSQL</li>
+    <li><Icon name="skill-icons:tailwindcss-light" />Tailwind</li>
   </ul>
 </Card>
