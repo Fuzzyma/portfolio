@@ -22,10 +22,28 @@ import Project from "./Project.astro";
         changeSlide(index)
     }))
 
+    document.querySelector('.projects')?.addEventListener('scroll', (e) => {
+        const div = e.target as HTMLDivElement
+        const children = document.querySelectorAll('.projects > div');
+        const dots = document.querySelectorAll('#dots > div')
+        const tileWidth = div.scrollWidth / children.length;
+        const index = Math.round(div.scrollLeft / tileWidth);
+        console.log(index)
+        const lastDot = dots[active];
+        const currentDot = dots[index % children.length];
+
+        active = index % children.length;
+
+        lastDot.classList.remove('opacity-100');
+        lastDot.classList.add('opacity-50');
+
+        currentDot.classList.remove('opacity-50');
+        currentDot.classList.add('opacity-100');
+    })
+
     const changeSlide = (index: number) => {
         const children = document.querySelectorAll('.projects > div');
         const dots = document.querySelectorAll('#dots > div')
-        const last = children[active];
         const current = children[index % children.length];
 
         const lastDot = dots[active];
@@ -33,14 +51,10 @@ import Project from "./Project.astro";
 
         active = index % children.length;
 
-        last.classList.remove('opacity-100');
-        last.classList.add('opacity-0', 'pointer-events-none');
+        current.scrollIntoView({behavior: 'smooth'})
 
         lastDot.classList.remove('opacity-100');
         lastDot.classList.add('opacity-50');
-
-        current.classList.remove('opacity-0', 'pointer-events-none');
-        current.classList.add('opacity-100');
 
         currentDot.classList.remove('opacity-50');
         currentDot.classList.add('opacity-100');
@@ -52,7 +66,7 @@ import Project from "./Project.astro";
 
 <Card colSpan="md:col-span-2" rowSpan="lg:row-span-4 md:row-span-6 !h-[400px] !md:h-auto">
     <div class="w-full h-full absolute inset-0">
-        <div class="grid w-full h-full projects [&>div]:col-start-1 [&>div]:row-start-1 [&>div]:col-end-2 [&>div]:row-end-2 [&>div]:transition-opacity [&>div]:transition-duration-500">
+        <div class="projects grid w-full h-full snap-x snap-mandatory [&>div]:snap-center overflow-hidden overflow-x-auto grid-rows-1 grid-flow-col auto-cols-[100%] [&>div]:w-full [&>div]:h-full [&>div]:transition-opacity [&>div]:transition-duration-500" style="grid-template-columns: 100%; scrollbar-width: none;">
             <Project class="opacity-100" title="Saalplan Designer und Viewer" 
             skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:tailwindcss-light','logos:pixijs', 'skill-icons:php-light']} 
             src="/projects/map-designer.jpg">
@@ -61,25 +75,25 @@ import Project from "./Project.astro";
                 Performante Darstellung beim Ticketkauf durch WebGL.
             </Project>
 
-            <Project class="opacity-0 pointer-events-none" title="Maintainer vom Open Source Projekt SVG.JS"
+            <Project title="Maintainer vom Open Source Projekt SVG.JS"
                         skills={['skill-icons:javascript', 'skill-icons:vitest-light', 'skill-icons:github-light']}
                         src="/projects/svgjs.jpg"} href="https://github.com/svgdotjs/svg.js">
                         SVG.JS ist eine leichte JavaScript-Bibliothek zur einfachen Erstellung und Manipulation von SVG-Grafiken im Web. Sie unterstützt Animationen und ermöglicht die Verknüpfung von Funktionen mit Benutzerinteraktionen.
             </Project>
             
-            <Project class="opacity-0 pointer-events-none" title="Webkonferenz-Plattform für Matheunterricht" 
+            <Project title="Webkonferenz-Plattform für Matheunterricht" 
                         skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:tailwindcss-light', 'skill-icons:nodejs-light']} 
                         src="https://picsum.photos/300/200">
                 Entwicklung einer Webkonferenz-Plattform mit geteiltem Whiteboard und maßgeschneiderteren Jitsi-Funktionalitäten. Ziel war es, eine nahtlose und benutzerfreundliche Online-Lernumgebung zu schaffen, die auf die Bedürfnisse des Matheunterrichts zugeschnitten ist.
             </Project>
             
-            <Project class="opacity-0 pointer-events-none" title="Baukostenabschätzung und Messung" 
+            <Project title="Baukostenabschätzung und Messung" 
                         skills={['skill-icons:vuejs-light', 'skill-icons:typescript', 'skill-icons:cs']} 
                         src="https://picsum.photos/300/200">
                 Ein Tool zur Schätzung von Baukosten und ähnlichen Projekten anhand von Flurplänen und CAD-Modellen. Für dieses Projekt habe ich die ersten Konzepte entwickelt und MVPs gebaut. Zusätzlich habe ich die Toolchain und Styleguides für das Team etabliert.
             </Project>
             
-            <Project class="opacity-0 pointer-events-none" title={'Vortragsreihe "Webapplikationen Basis"'} 
+            <Project title={'Vortragsreihe "Webapplikationen Basis"'} 
                         skills={['skill-icons:html', 'skill-icons:css', 'skill-icons:javascript', 'skill-icons:php-light']} 
                         src="/projects/teaching.jpg">
                 Lehre der Grundkonzepte von HTML, CSS, JavaScript und PHP im Rahmen einer zweiwöchigen Schulung.
@@ -99,11 +113,3 @@ import Project from "./Project.astro";
         </div>
     </div>
 </Card>
-
-<style>
-
-    #dots > div {
-        box-shadow: "0 0px 20px rgba(255,255, 255, 0.35)",
-                    "0 0px 65px rgba(255, 255,255, 0.2)",
-    }
-</style>
