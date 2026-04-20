@@ -9,6 +9,19 @@ export interface VCardSocialEntry {
   url: string;
 }
 
+function encodeQuotedPrintableUtf8(value: string): string {
+  const bytes = new TextEncoder().encode(value);
+
+  return Array.from(bytes, (byte) => {
+    const char = String.fromCharCode(byte);
+    const isSafeAscii = byte >= 0x20 && byte <= 0x7e && char !== "=";
+
+    return isSafeAscii
+      ? char
+      : `=${byte.toString(16).toUpperCase().padStart(2, "0")}`;
+  }).join("");
+}
+
 function escapeVCardValue(value: string): string {
   return value
     .replace(/\\/g, "\\\\")
@@ -26,8 +39,12 @@ export function buildVCard(
   const lines: string[] = ["BEGIN:VCARD", "VERSION:3.0"];
 
   if (fixed.name) {
-    lines.push("N:Schäfer;Ulrich-Matthias;;;");
-    lines.push("FN:Ulrich-Matthias Schäfer");
+    lines.push(
+      `N;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:${encodeQuotedPrintableUtf8("Schäfer")};${encodeQuotedPrintableUtf8("Ulrich-Matthias")};;;`,
+    );
+    lines.push(
+      `FN;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:${encodeQuotedPrintableUtf8("Ulrich-Matthias Schäfer")}`,
+    );
   }
 
   if (fixed.website) {

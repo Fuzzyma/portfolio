@@ -22,6 +22,19 @@ import VCardWidget from "../components/vcard/VCardWidget.vue";
 
     <section class="section">
       <VCardWidget client:load />
+
+      <aside class="credit" aria-label="Attribution">
+        <p class="credit-kicker">Original inspiration</p>
+        <p class="credit-copy">
+          This vCard page idea comes from
+          <a
+            href="https://todde.tv/vcard/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="credit-link">@toddeTV</a
+          >.
+        </p>
+      </aside>
     </section>
 
     <footer class="page-footer">
@@ -120,6 +133,46 @@ import VCardWidget from "../components/vcard/VCardWidget.vue";
     padding: 40px 24px 80px;
     max-width: var(--max-w);
     margin: 0 auto;
+  }
+
+  .credit {
+    margin-top: 40px;
+    padding: 18px 20px;
+    border: 1px solid rgba(201, 162, 39, 0.12);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.025);
+    text-align: center;
+  }
+
+  .credit-kicker {
+    margin: 0 0 6px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .credit-copy {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .credit-link {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .credit-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .page-footer {
