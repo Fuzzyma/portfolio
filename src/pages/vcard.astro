@@ -1,0 +1,137 @@
+---
+import BasicLayout from "../layouts/BasicLayout.astro";
+import VCardWidget from "../components/vcard/VCardWidget.vue";
+---
+
+<BasicLayout
+  title="vCard – Ulrich-Matthias Schäfer"
+  description="Generate a QR code contact card for Ulrich-Matthias Schäfer."
+>
+  <div class="page">
+    <section class="hero">
+      <h1 class="hero-title">Contact Card</h1>
+      <p class="hero-subtitle">
+        Scan the QR code to save the contact. Toggle the checkboxes to customize
+        what gets included.
+      </p>
+    </section>
+
+    <div class="divider" aria-hidden="true">
+      <span class="divider-dot"></span>
+    </div>
+
+    <section class="section">
+      <VCardWidget client:load />
+    </section>
+
+    <footer class="page-footer">
+      <p>&copy; {new Date().getFullYear()} Ulrich-Matthias Schäfer</p>
+    </footer>
+  </div>
+</BasicLayout>
+
+<style is:global>
+  body {
+    height: auto !important;
+    display: block !important;
+    background: #090b10 !important;
+  }
+</style>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+  :root {
+    --accent: #c9a227;
+    --bg: #090b10;
+    --text: #f5f5f0;
+    --text-muted: #a8a29e;
+    --font: "Space Grotesk", sans-serif;
+    --max-w: 640px;
+  }
+
+  .page {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    padding: 80px 24px 40px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    color: var(--text);
+  }
+
+  .hero-subtitle {
+    font-weight: 300;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 24px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(201, 162, 39, 0.2),
+      transparent
+    );
+  }
+
+  .divider-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 0 20px;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  .section {
+    padding: 40px 24px 80px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .page-footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: var(--font);
+    opacity: 0.4;
+  }
+
+  .page-footer p {
+    margin: 0;
+  }
+</style>
